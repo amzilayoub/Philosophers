@@ -2,12 +2,15 @@
 
 int main(int argc, char **argv)
 {
-  t_args *args;
+  t_data *data = NULL;
 
-  args = (t_args*)malloc(sizeof(t_args));
-  if (parser(args, argc, argv))
+  init(&data);
+  if (parser(data->args, argc, argv))
   {
     // Error
   }
+  fill_data(data);
+  start_threads(data);
+  sleep(10);
   return (0);
 }

@@ -20,7 +20,6 @@ int parser(t_args *args, int argc, char ** argv)
   args->time_to_sleep = ft_atoi(argv[4]);
   if (argv[5])
     args->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
-  print_args(args);
-  // return printf("Hello\n");
+  // print_args(args);
   return 0;
 }

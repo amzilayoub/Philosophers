@@ -12,7 +12,7 @@ void fill_data(t_data *data)
   int next_philo_index;
 
   data->threads_data = (t_thread_info*)malloc(sizeof(t_thread_info) * data->args->number_of_philosophers);
-  pthread_mutex_init(&data->stdin, NULL);
+  pthread_mutex_init(&data->lock_stdin, NULL);
   i = -1;
   while (++i < data->args->number_of_philosophers)
   {

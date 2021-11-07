@@ -52,6 +52,4 @@ void custom_usleep(useconds_t time_to_sleep)
             factor *= 2;
         }
     }
-    // printf("EXPECTED ENDING = %ld - %d\n", ending_time.tv_sec, ending_time.tv_usec);
-    // printf("ENDING = %ld - %d\n", time_now.tv_sec, time_now.tv_usec);
 }

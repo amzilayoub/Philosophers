@@ -1,3 +1,4 @@
 1-Start the threads -> DONE
 2-using mutex
 3-creating the last eat time
+4-now we should check if the philosopher is dead or not

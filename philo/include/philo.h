@@ -29,18 +29,15 @@ typedef struct s_thread_info {
   pthread_mutex_t fork;
   struct s_thread_info *next_philo;
   struct timeval  last_time_eat;
+  struct s_data   *global_data;
 }               t_thread_info;
 
 typedef struct  s_data {
   t_args          *args;
   t_thread_info   *threads_data;
-  pthread_mutex_t stdin;
+  pthread_mutex_t lock_stdin;
 }               t_data;
 
-typedef struct s_thread_arg {
-  t_data *data;
-  t_thread_info *thread_info;
-}               t_thread_arg;
 
 /*
  * Defining the functions
@@ -53,4 +50,9 @@ void fill_data(t_data *data);
 void *philo(void *args);
 void start_threads(t_data *data);
 void custom_usleep(useconds_t time_to_sleep);
+void eating(t_thread_info *thread_info);
+void sleeping(t_thread_info *thread_info);
+void thinking(t_thread_info *thread_info);
+int custom_printf(const char *str, t_thread_info *thread_info);
+
 #endif

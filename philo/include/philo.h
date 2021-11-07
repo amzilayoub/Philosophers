@@ -54,5 +54,12 @@ void eating(t_thread_info *thread_info);
 void sleeping(t_thread_info *thread_info);
 void thinking(t_thread_info *thread_info);
 int custom_printf(const char *str, t_thread_info *thread_info);
+void get_ending_time
+(
+    struct timeval starting_time,
+    useconds_t time_to_add,
+    struct timeval *ending_time
+);
+void died(t_thread_info *thread_info);
 
 #endif

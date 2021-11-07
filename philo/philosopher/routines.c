@@ -20,5 +20,5 @@ void thinking(t_thread_info *thread_info)
 
 void died(t_thread_info *thread_info)
 {
-
+    custom_printf("died", thread_info);
 }

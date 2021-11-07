@@ -28,6 +28,7 @@ typedef struct s_thread_info {
   pthread_t       thread_id;
   pthread_mutex_t fork;
   struct s_thread_info *next_philo;
+  struct timeval  last_time_eat;
 }               t_thread_info;
 
 typedef struct  s_data {

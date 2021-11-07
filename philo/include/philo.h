@@ -10,7 +10,7 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
-
+# define MAX_MICRO_SEC 1000000
 /*
  * Defining the typedef/struct
  */
@@ -37,6 +37,11 @@ typedef struct  s_data {
   pthread_mutex_t stdin;
 }               t_data;
 
+typedef struct s_thread_arg {
+  t_data *data;
+  t_thread_info *thread_info;
+}               t_thread_arg;
+
 /*
  * Defining the functions
  */
@@ -47,4 +52,5 @@ void init(t_data **data);
 void fill_data(t_data *data);
 void *philo(void *args);
 void start_threads(t_data *data);
+void custom_usleep(useconds_t time_to_sleep);
 #endif

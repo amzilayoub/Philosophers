@@ -1,2 +1,2 @@
 compile:
-	gcc -fsanitize=address */*.c */*/*.c
+	gcc -g -fsanitize=address */*.c */*/*.c

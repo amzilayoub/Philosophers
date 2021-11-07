@@ -16,8 +16,11 @@ void unlock_forks(t_thread_info *data)
 
 void *philo(void *args)
 {
-  lock_forks((t_thread_info*)args);
+  t_thread_arg *thread_arg;
+
+  thread_arg = (t_thread_arg*)args;
+  lock_forks(thread_arg->thread_info);
   printf("Eating\n");
-  unlock_forks((t_thread_info*)args);
+  unlock_forks(thread_arg->thread_info);
   return NULL;
 }

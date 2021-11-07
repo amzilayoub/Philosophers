@@ -1,21 +1,21 @@
 #include "../include/philo.h"
 
-void eating()
+void eating(t_thread_arg *thread_arg)
 {
 
 }
 
-void sleeping()
+void sleeping(t_thread_arg *thread_arg)
 {
 
 }
 
-void thinking()
+void thinking(t_thread_arg *thread_arg)
 {
 
 }
 
-void died()
+void died(t_thread_arg *thread_arg)
 {
 
 }

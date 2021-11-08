@@ -10,6 +10,7 @@ void eating(t_thread_info *thread_info)
 void sleeping(t_thread_info *thread_info)
 {
     custom_printf("is sleeping", thread_info);
+    unlock_forks(thread_info);
     custom_usleep(thread_info->global_data->args->time_to_sleep);
 }
 

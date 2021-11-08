@@ -3,7 +3,9 @@
 void lock_forks(t_thread_info *thread_info)
 {
   pthread_mutex_lock(&thread_info->fork);
+  custom_printf("taken a fork", thread_info);
   pthread_mutex_lock(&thread_info->next_philo->fork);
+  custom_printf("taken a fork", thread_info);
   // printf("\tLocked -> %d - %d\n", data->index, data->next_philo->index);
 }
 
@@ -19,13 +21,12 @@ void *philo(void *args)
   t_thread_info *thread_info;
 
   thread_info = (t_thread_info*)args;
-  gettimeofday(&thread_info->last_time_eat, NULL);
+  if (!(thread_info->index % 2))
+    usleep(100);
   while (1)
   {
-    custom_printf("taken a fork", thread_info);
     lock_forks(thread_info);
     eating(thread_info);
-    unlock_forks(thread_info);
     sleeping(thread_info);
     thinking(thread_info);
   }

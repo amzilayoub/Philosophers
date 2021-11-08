@@ -61,5 +61,7 @@ void get_ending_time
     struct timeval *ending_time
 );
 void died(t_thread_info *thread_info);
-
+unsigned long long convert_to_milisec(struct timeval time);
+void unlock_forks(t_thread_info *thread_info);
+void lock_forks(t_thread_info *thread_info);
 #endif

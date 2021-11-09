@@ -12,17 +12,17 @@
 //         factor *= 2;
 //     }
 //     */
-//     struct timeval time_now;
-//     struct timeval ending_time;
+//     unsigned int time_now;
+//     unsigned int ending_time;
 //     useconds_t tmp_sleep;
 //     int factor = 2;
 
-//     gettimeofday(&time_now, NULL);
-//     get_ending_time(time_now, time_to_sleep, &ending_time);
+//     time_now = get_time_now();
+//     ending_time = time_now + (time_to_sleep * 1000);
 //     while (1)
 //     {
-//         gettimeofday(&time_now, NULL);
-//         if (time_now.tv_sec > ending_time.tv_sec && time_now.tv_usec > ending_time.tv_usec)
+//         time_now = get_time_now();
+//         if (time_now >= ending_time)
 //             break;
 //         tmp_sleep = time_to_sleep / factor;
 //         if (tmp_sleep)
@@ -32,20 +32,23 @@
 //         }
 //     }
 // }
+// useconds_t get_current_time
 
 void custom_usleep(useconds_t time_to_sleep)
 {
-    unsigned long long now;    
-    unsigned long long end;
-    struct timeval time;
+    // unsigned int now;    
+    // unsigned int end;
+    // struct timeval time;
 
-    gettimeofday(&time, NULL);
-    now = convert_to_milisec(time);
-    end = now + time_to_sleep;
-    while (now <= end)
-    {
-        gettimeofday(&time, NULL);
-        now = convert_to_milisec(time);
-        usleep(100);
-    }
+    // gettimeofday(&time, NULL);
+    // now = convert_to_milisec(time);
+    // end = now + time_to_sleep;
+    // while (now <= end)
+    // {
+    //     gettimeofday(&time, NULL);
+    //     now = convert_to_milisec(time);
+    //     usleep(25);
+    // }
+    unsigned int end = get_time_now() + time_to_sleep;
+    while (get_time_now() < end);
 }

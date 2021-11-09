@@ -11,6 +11,8 @@
 # include <sys/time.h>
 # include <pthread.h>
 # define MAX_MICRO_SEC 1000000
+# define TRUE 1
+# define FALSE 0
 /*
  * Defining the typedef/struct
  */
@@ -25,8 +27,10 @@ typedef struct  s_args {
 
 typedef struct s_thread_info {
   int             index;
+  int             eat_count;
   pthread_t       thread_id;
   pthread_mutex_t fork;
+  pthread_mutex_t is_eating;
   struct s_thread_info *next_philo;
   struct timeval  last_time_eat;
   struct s_data   *global_data;
@@ -36,13 +40,14 @@ typedef struct  s_data {
   t_args          *args;
   t_thread_info   *threads_data;
   pthread_mutex_t lock_stdin;
+  char            has_must_eat_count;
 }               t_data;
 
 
 /*
  * Defining the functions
  */
-int parser(t_args *args, int argc, char ** argv);
+int parser(t_data *data, int argc, char ** argv);
 int		ft_atoi(const char *str);
 void error();
 void init(t_data **data);
@@ -61,7 +66,8 @@ void get_ending_time
     struct timeval *ending_time
 );
 void died(t_thread_info *thread_info);
-unsigned long long convert_to_milisec(struct timeval time);
+unsigned int convert_to_milisec(struct timeval time);
 void unlock_forks(t_thread_info *thread_info);
 void lock_forks(t_thread_info *thread_info);
+unsigned int get_time_now();
 #endif

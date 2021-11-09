@@ -2,8 +2,11 @@
 
 void eating(t_thread_info *thread_info)
 {
+    // pthread_mutex_lock(&thread_info->is_eating);
     custom_printf("is eating", thread_info);
     custom_usleep(thread_info->global_data->args->time_to_eat);
+    thread_info->eat_count += 1;
+    // pthread_mutex_unlock(&thread_info->is_eating);
     gettimeofday(&thread_info->last_time_eat, NULL);
 }
 

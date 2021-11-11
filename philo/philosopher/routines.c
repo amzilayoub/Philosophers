@@ -23,5 +23,5 @@ void thinking(t_thread_info *thread_info)
 
 void died(t_thread_info *thread_info)
 {
-    custom_printf("died", thread_info);
+    printf("%u %d %s\n", get_time_now() - g_process_starting_time, thread_info->index, "is died");
 }

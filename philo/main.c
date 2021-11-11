@@ -16,9 +16,10 @@ void watcher(t_data *data)
       time_now = get_time_now();
       if (time_now - last_time_eat >= data->args->time_to_die)
       {
+        data->philo_died = TRUE;
         pthread_mutex_lock(&data->threads_data[i].is_eating);
         // printf("%u\n%u\n", time_now, last_time_eat);
-        data->philo_died = TRUE;
+        pthread_mutex_lock(&data->lock_stdin);
         died(&data->threads_data[i]);
         // pthread_mutex_unlock(&data->threads_data[i].is_eating);
         exit(1);
@@ -28,11 +29,12 @@ void watcher(t_data *data)
     }
     if (min_eat_count == data->args->number_of_philosophers && data->has_must_eat_count)
     {
-      printf("Simulation ends\n");
       data->philo_died = TRUE;
+      pthread_mutex_lock(&data->lock_stdin);
+      printf("Simulation ends\n");
       exit(1);
     }
-    usleep(1e3);
+   //usleep(1e3);
   }
 }
 

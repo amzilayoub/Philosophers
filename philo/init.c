@@ -16,6 +16,7 @@ void fill_data(t_data *data)
   i = -1;
   while (++i < data->args->number_of_philosophers)
   {
+    data->philo_died = FALSE;
     data->threads_data[i].index = i + 1;
     pthread_mutex_init(&data->threads_data[i].fork, NULL);
     next_philo_index = (i + 1) % data->args->number_of_philosophers;

@@ -32,7 +32,7 @@ typedef struct s_thread_info {
   pthread_mutex_t fork;
   pthread_mutex_t is_eating;
   struct s_thread_info *next_philo;
-  struct timeval  last_time_eat;
+  unsigned int    last_time_eat;
   struct s_data   *global_data;
 }               t_thread_info;
 
@@ -41,8 +41,11 @@ typedef struct  s_data {
   t_thread_info   *threads_data;
   pthread_mutex_t lock_stdin;
   char            has_must_eat_count;
+  char            philo_died;
 }               t_data;
 
+
+unsigned int g_process_starting_time;
 
 /*
  * Defining the functions

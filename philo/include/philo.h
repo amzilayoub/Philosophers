@@ -66,5 +66,9 @@ unsigned int	convert_to_milisec(struct timeval time);
 void			unlock_forks(t_thread_info *thread_info);
 void			lock_forks(t_thread_info *thread_info);
 unsigned int	get_time_now(void);
+int				_watcher_helper_function(
+					t_data *data,
+					int i,
+					int *min_eat_count);
 
 #endif

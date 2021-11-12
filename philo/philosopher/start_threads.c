@@ -12,7 +12,7 @@
 
 #include "../include/philo.h"
 
-void run_threads(t_data *data, int initiale_value,int inc)
+void	run_threads(t_data *data, int initiale_value)
 {
 	int	i;
 
@@ -28,43 +28,13 @@ void run_threads(t_data *data, int initiale_value,int inc)
 			philo,
 			(void *)&data->threads_data[i]);
 		pthread_detach(data->threads_data[i].thread_id);
-		i += inc;
+		i += 2;
 	}
 }
 
 void	start_threads(t_data *data)
 {
-	int	i;
-
-	i = 1;
-	run_threads(data, 1, 2);
-	// while (i < data->args->number_of_philosophers)
-	// {
-	// 	data->threads_data[i].global_data = data;
-	// 	data->threads_data[i].eat_count = 0;
-	// 	data->threads_data[i].last_time_eat = get_time_now();
-	// 	pthread_create(
-	// 		&data->threads_data[i].thread_id,
-	// 		NULL,
-	// 		philo,
-	// 		(void *)&data->threads_data[i]);
-	// 	pthread_detach(data->threads_data[i].thread_id);
-	// 	i += 2;
-	// }
+	run_threads(data, 1);
 	usleep(100);
-	run_threads(data, 1, 2);
-	i = 0;
-	while (i < data->args->number_of_philosophers)
-	{
-		data->threads_data[i].global_data = data;
-		data->threads_data[i].eat_count = 0;
-		data->threads_data[i].last_time_eat = get_time_now();
-		pthread_create(
-			&data->threads_data[i].thread_id,
-			NULL,
-			philo,
-			(void *)&data->threads_data[i]);
-		pthread_detach(data->threads_data[i].thread_id);
-		i += 2;
-	}
+	run_threads(data, 0);
 }

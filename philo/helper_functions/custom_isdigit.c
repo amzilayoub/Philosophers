@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   custom_printf.c                                    :+:      :+:    :+:   */
+/*   isdigit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aamzil <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/12 17:38:30 by aamzil            #+#    #+#             */
-/*   Updated: 2021/11/12 17:38:32 by aamzil           ###   ########.fr       */
+/*   Created: 2021/11/13 15:21:39 by aamzil            #+#    #+#             */
+/*   Updated: 2021/11/13 15:23:40 by aamzil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	custom_printf(const char *str, t_thread_info *thread_info)
+int	custom_isdigit(char **argv)
 {
-	pthread_mutex_lock(&thread_info->global_data->lock_stdin);
-	printf(
-		"%u %d %s\n",
-		get_time_now(),
-		thread_info->index,
-		str);
-	pthread_mutex_unlock(&thread_info->global_data->lock_stdin);
-	return (1);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (argv[++i])
+	{
+		j = -1;
+		while (argv[i][++j])
+		{
+			if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
+				return (1);
+		}
+	}
+	return (0);
 }

@@ -12,7 +12,7 @@
 
 #include "include/philo.h"
 
-void	watcher(t_data *data)
+int	watcher(t_data *data)
 {
 	int				i;
 	int				min_eat_count;
@@ -22,14 +22,17 @@ void	watcher(t_data *data)
 		i = -1;
 		min_eat_count = 0;
 		while (++i < data->args->number_of_philosophers)
-			_watcher_helper_function(data, i, &min_eat_count);
+		{
+			if (_watcher_helper_function(data, i, &min_eat_count))
+				return (1);
+		}
 		if (min_eat_count == data->args->number_of_philosophers
 			&& data->has_must_eat_count)
 		{
 			data->philo_died = TRUE;
 			pthread_mutex_lock(&data->lock_stdin);
 			printf("Simulation ends\n");
-			exit(1);
+			return (0);
 		}
 		usleep(500);
 	}
@@ -41,11 +44,10 @@ int	main(int argc, char **argv)
 
 	init(&data);
 	if (parser(data, argc, argv))
-	{
-		exit(1);
-	}
+		return (1);
 	fill_data(data);
 	start_threads(data);
-	watcher(data);
+	if (watcher(data))
+		return (1);
 	return (0);
 }

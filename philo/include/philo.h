@@ -51,7 +51,7 @@ typedef struct s_data {
 
 int				parser(t_data *data, int argc, char **argv);
 int				ft_atoi(const char *str);
-void			error(void);
+int				error(const char *str);
 void			init(t_data **data);
 void			fill_data(t_data *data);
 void			*philo(void *args);
@@ -70,5 +70,6 @@ int				_watcher_helper_function(
 					t_data *data,
 					int i,
 					int *min_eat_count);
+int				custom_isdigit(char **argv);
 
 #endif

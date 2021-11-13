@@ -12,8 +12,8 @@
 
 #include "../include/philo.h"
 
-void	error(void)
+int	error(const char *str)
 {
-	printf("Oooooops...error\n");
-	exit(0);
+	printf("%s\n", str);
+	return (1);
 }
